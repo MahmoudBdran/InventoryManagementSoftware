@@ -1,0 +1,95 @@
+﻿<Window x:Class="InvntoryManagementSoftware.MandoobPackage.MandoobWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:InvntoryManagementSoftware.MandoobPackage"
+        xmlns:uc="clr-namespace:InvntoryManagementSoftware.UserControls"
+        xmlns:fa ="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+        mc:Ignorable="d"
+        Title="ترميز مندوبي المبيعات" Height="700" Width="1100 ">
+
+    <Border Background="Transparent" CornerRadius="30">
+        <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.15*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Border Background="#31407B" >
+                        <TextBlock Text="تسجيل مندوبي المبيعات" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Foreground="White" FontSize="24 " FontWeight="bold"/>
+                    </Border>
+
+
+            <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1">
+                <Grid Margin="20 0" Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+
+                    <!--Inputs-->
+                    <uc:MyTextBox Grid.Column="0" Grid.Row="1" Caption="الإيميل" x:Name="NameViewer" TextBlock.TextAlignment="Right" />
+                    <uc:MyTextBox Grid.Column="0" Grid.Row="2" Caption="الرمز البريدي" x:Name="SerialnumberViewer" TextBlock.TextAlignment="Right"/>
+                    <uc:MyTextBox Grid.Column="0" Grid.Row="3" Caption="ملاحظات" x:Name="AmountViewer" Focusable="True" TextBlock.TextAlignment="Right" />
+                    <StackPanel Grid.Row="4" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+
+                        <Button  Margin="10 20 10 20" Style="{StaticResource addButton}" HorizontalAlignment="Right" x:Name="SearchBtn" Click="SearchBtn_Click" TextBlock.TextAlignment="Right">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="بحث" FontSize="20"/>
+                            </StackPanel>
+                        </Button>
+                        <Button  Margin="10 20 10 20" Style="{StaticResource addButton}" HorizontalAlignment="Right" x:Name="UpdateBtn"  TextBlock.TextAlignment="Right">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="تحديث" FontSize="20"/>
+                            </StackPanel>
+                        </Button>
+                        <Button Margin="20" Style="{StaticResource addButton}" HorizontalAlignment="Right" x:Name="saveBtn"  TextBlock.TextAlignment="Right">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="حفظ" FontSize="20"/>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+
+
+                    <StackPanel Grid.Row="5" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
+
+                        <Button  Margin="10 20 10 20" Style="{StaticResource addButton}" HorizontalAlignment="Right" x:Name="CloseBtn"  TextBlock.TextAlignment="Right">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="إغلاق" FontSize="20"/>
+                            </StackPanel>
+                        </Button>
+                        <Button  Margin="20" Style="{StaticResource addButton}" HorizontalAlignment="Right" x:Name="NewBtn"  TextBlock.TextAlignment="Right">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="جديد" FontSize="20"/>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+
+
+
+
+
+
+                    <uc:MyTextBox Grid.Column="1" Grid.Row="1" Caption="إسم المندوب" x:Name="ActualpriceViewer"  Focusable="True"  TextBlock.TextAlignment="Right"/>
+                    <uc:MyTextBox Grid.Column="1" Grid.Row="2" Caption="رقم التليفون" x:Name="DiscountViewer" Focusable="True"  TextBlock.TextAlignment="Right"/>
+                    <uc:MyTextBox Grid.Column="1" Grid.Row="3" Caption="المدينة" Focusable="True"  TextBlock.TextAlignment="Right" />
+                    <uc:MyTextBox Grid.Column="1" Grid.Row="4" Caption="المنطقة" Focusable="True"  TextBlock.TextAlignment="Right" />
+
+                </Grid>
+
+            </ScrollViewer>
+
+                </Grid>  
+    </Border>
+</Window>

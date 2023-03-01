@@ -1,0 +1,122 @@
+﻿<Window x:Class="InvntoryManagementSoftware.CatPackage.CatWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:InvntoryManagementSoftware.CatPackage"
+        xmlns:uc="clr-namespace:InvntoryManagementSoftware.UserControls"
+        xmlns:fa ="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+        mc:Ignorable="d"
+        Title="ترميز الأصناف" Height="800" Width="1100">
+
+    <Border Background="Transparent" CornerRadius="30">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.15*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Border Background="#31407B" >
+                <TextBlock Text="الأصنــــاف" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Foreground="White" FontSize="24 " FontWeight="bold"/>
+            </Border>
+
+            <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1">
+                <Grid Margin="0 0" Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+
+                    <!--Inputs-->
+                    <uc:MyTextBox Grid.Column="0" Grid.Row="0" Caption="الوحدة" x:Name="unit_tb" Focusable="True"  TextBlock.TextAlignment="Right"/>
+                    <uc:MyTextBox Grid.Column="0" Grid.Row="1" Caption="الوصف" x:Name="Desc_tb" TextBlock.TextAlignment="Right" />
+                    <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+
+                        <Button  Margin="10 20 10 20" Style="{StaticResource addButton}" HorizontalAlignment="Right" x:Name="SearchBtn" Click="SearchBtn_Click" TextBlock.TextAlignment="Right">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="بحث" FontSize="20"/>
+                            </StackPanel>
+                        </Button>
+                        <Button  Margin="10 20 10 20" Style="{StaticResource addButton}" HorizontalAlignment="Right" x:Name="UpdateBtn"  TextBlock.TextAlignment="Right" Click="UpdateBtn_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="تحديث" FontSize="20"/>
+                            </StackPanel>
+                        </Button>
+                        <Button Margin="20" Style="{StaticResource addButton}" HorizontalAlignment="Right" x:Name="saveBtn"  TextBlock.TextAlignment="Right" Click="saveBtn_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="حفظ" FontSize="20"/>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+                    <StackPanel Grid.Row="3" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
+
+                        <Button  Margin="10 20 10 20" Style="{StaticResource addButton}" HorizontalAlignment="Right" x:Name="CloseBtn"  TextBlock.TextAlignment="Right" Click="CloseBtn_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="إغلاق" FontSize="20"/>
+                            </StackPanel>
+                        </Button>
+                        <Button  Margin="20" Style="{StaticResource addButton}" HorizontalAlignment="Right" x:Name="NewBtn"  TextBlock.TextAlignment="Right" Click="NewBtn_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="جديد" FontSize="20"/>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+                    <uc:MyTextBox Grid.Column="1" Grid.Row="0" Caption="إسم الصنف" x:Name="CatName_tb"  Focusable="True"  TextBlock.TextAlignment="Right"/>
+                    <uc:MyTextBox Grid.Column="1" Grid.Row="1" Caption="الباركود" x:Name="CatBarCode_tb" Focusable="True"  TextBlock.TextAlignment="Right"/>
+                    <Grid  Grid.Column="1" Grid.Row="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock HorizontalAlignment="Right" VerticalAlignment="Center" TextAlignment="Right" Margin="0 0 20 0" Text="الفئة" FontSize="17"  Foreground="#868686" />
+                        <ComboBox Grid.Row="1" Height="30" x:Name="MainCat_cmb" ItemsSource="{Binding MainCatList}" SelectionChanged="MainCat_cmb_SelectionChanged"
+                                  SelectedValuePath="Content" FontSize="15" Foreground="Gray" FontWeight="Bold" HorizontalAlignment="Right" TextBlock.TextAlignment="Center" VerticalAlignment="Center" BorderThickness="1" BorderBrush="#ACB0AF" Margin="20 7" Width="350">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding MainCatName}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+
+                    </Grid>
+                    <Grid  Grid.Column="1" Grid.Row="3" Margin="0 5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock HorizontalAlignment="Right" VerticalAlignment="Center" TextAlignment="Right" Margin="0 0 20 0" Text="الفئة الفرعية" FontSize="17"  Foreground="#868686" />
+                        <ComboBox Grid.Row="1" Height="30" Name="SubCat_cmb" ItemsSource="{Binding SubCatList}"
+                                  SelectedValuePath="Content" FontSize="15" Foreground="Gray" FontWeight="Bold" HorizontalAlignment="Right" TextBlock.TextAlignment="Center" VerticalAlignment="Center" BorderThickness="1" BorderBrush="#ACB0AF" Margin="20 7" Width="350">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding SubCategoryName}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+    
+                    </Grid>
+                    <uc:MyTextBox Grid.Column="1" Grid.Row="4" Caption="سعر البيع"  x:Name="SalePrice_tb"  Focusable="True"  TextBlock.TextAlignment="Right"/>
+                    <uc:MyTextBox Grid.Column="1" Grid.Row="5" Caption="سعر الشراء"  x:Name="BuyPrice_tb"  Focusable="True"  TextBlock.TextAlignment="Right"/>
+                    <uc:MyTextBox Grid.Column="1" Grid.Row="6" Caption="الكمية"  x:Name="quantity_tb"  Focusable="True"  TextBlock.TextAlignment="Right"/>
+                </Grid>
+            </ScrollViewer>
+        </Grid>
+    </Border>
+</Window>

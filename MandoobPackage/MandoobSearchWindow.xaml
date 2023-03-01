@@ -1,0 +1,85 @@
+﻿<Window x:Class="InvntoryManagementSoftware.MandoobPackage.MandoobSearchWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:InvntoryManagementSoftware.MandoobPackage"
+        xmlns:fa ="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+        mc:Ignorable="d"
+        xmlns:uc="clr-namespace:InvntoryManagementSoftware.UserControls"
+        Title="سجلات مندوبي المبيعات" Height="600" Width="1200">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.15*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Border Background="#31407B" >
+            <TextBlock Text="سجلات مندوبي المبيعات" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Foreground="White" FontSize="24 " FontWeight="bold"/>
+        </Border>
+
+        <Grid Grid.Row="1" FlowDirection="RightToLeft">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <uc:MyTextBox Grid.Column="0" Caption="بحث بإسم المورد" x:Name="ClientnameSearchTB" />
+            <uc:MyTextBox Grid.Column="1" Caption="بحث برقم الهاتف" x:Name="ClientPhoneSearchTB" />
+            <uc:MyTextBox Grid.Column="2" Caption="بحث بالمدينة" x:Name="ClientGOVSearchTB" />
+            <Button Padding="5" Grid.Column="4" Style="{StaticResource excelButtonStyle}" HorizontalAlignment="Left" Margin="0 30" VerticalAlignment="Center" x:Name="exportToExcelBtn">
+                <StackPanel Orientation="Horizontal" >
+                    <Image Source="/Assets/excelicon.png"/>
+                    <TextBlock Text="تصدير إلي إكسيل" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+        </Grid>
+        <DataGrid Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" Grid.Row="6" x:Name="membersDataGrid" ItemsSource="{Binding}">
+            <DataGrid.Columns>
+                <DataGridCheckBoxColumn CanUserResize="False" Width="auto" >
+                    <DataGridCheckBoxColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <CheckBox/>
+                        </DataTemplate>
+                    </DataGridCheckBoxColumn.HeaderTemplate>
+                </DataGridCheckBoxColumn>
+                <DataGridTextColumn Header="#" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding Number}"/>
+                <DataGridTemplateColumn Header="Member" IsReadOnly="False" Width="*" >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+
+                                <Border Width="25" Height="25" CornerRadius="50" Margin="0 0 10 0" Background="{Binding BgColor}">
+                                    <TextBlock Text="{Binding Character}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White"/>
+                                </Border>
+                                <TextBlock Text="{Binding Name}" VerticalAlignment="Center"/>
+
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Position" IsReadOnly="True" CanUserResize="True" Width="*" Binding="{Binding Position}"/>
+                <DataGridTextColumn Header="Email Address" IsReadOnly="True" CanUserResize="True" Width="*" Binding="{Binding Email}"/>
+                <DataGridTextColumn Header="Phone Number" IsReadOnly="True" CanUserResize="True" Width="*" Binding="{Binding Phone}"/>
+                <DataGridTemplateColumn Header="Operations" IsReadOnly="True" Width="auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Style="{StaticResource gridEditButton}">
+                                    <fa:IconImage Icon="Pencil" Foreground="White" Style="{StaticResource gridButtonIcon}" />
+                                </Button>
+                                <Button Style="{StaticResource gridRemoveButton}" Margin="5 0 0 0">
+                                    <fa:IconImage Icon="Trash" Style="{StaticResource gridButtonIcon}" Foreground="White"/>
+                                </Button>
+
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+    </Grid>
+</Window>
